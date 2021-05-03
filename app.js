@@ -53,7 +53,7 @@ document.querySelector('.btn-roll').addEventListener('click', function (){
             scores[activePlayer] = scores[activePlayer] + roundScore;
         document.getElementById('score-' + activePlayer).textContent = scores[activePlayer];
         
-        if(scores[activePlayer]>= 10){
+        if(scores[activePlayer]>= 100){
             GameOver = true;
             document.getElementById('name-'+activePlayer).textContent = "Winner!!!";
             document.querySelector('.player-'+ activePlayer +'-panel').classList.add('winner');
