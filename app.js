@@ -1,7 +1,9 @@
+var GameOver;
 var activePlayer, scores, roundScore;
 var diceDom = document.querySelector('.dice');
 function newGame(){
     //Toglogch haruulah 0 1
+    GameOver = false;
 activePlayer = 0;
 
 //toglogchiin tsugluulsan onoog hadgalah 
@@ -24,7 +26,8 @@ document.querySelector('.player-1-panel').classList.remove('active');
 }
 newGame();
 document.querySelector('.btn-roll').addEventListener('click', function (){
-    //1-6 dotor too gargana
+    if(GameOver === false){
+        //1-6 dotor too gargana
     var diceNumber = Math.floor( Math.random() * 6)+ 1;
     
     //shooni zurag gargaj irne
@@ -43,17 +46,22 @@ document.querySelector('.btn-roll').addEventListener('click', function (){
     } else {
         switchToNextPlayer();
         }
+    }
     });
     document.querySelector(".btn-hold").addEventListener('click',function(){
-        scores[activePlayer] = scores[activePlayer] + roundScore;
+        if(GameOver === false){
+            scores[activePlayer] = scores[activePlayer] + roundScore;
         document.getElementById('score-' + activePlayer).textContent = scores[activePlayer];
         
         if(scores[activePlayer]>= 10){
+            GameOver = true;
             document.getElementById('name-'+activePlayer).textContent = "Winner!!!";
             document.querySelector('.player-'+ activePlayer +'-panel').classList.add('winner');
             document.querySelector('.player-'+ activePlayer +'-panel').classList.remove('active');
         } else  {
             switchToNextPlayer();
+        }
+        
         }
         
     });
